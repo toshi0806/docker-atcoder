@@ -1,5 +1,5 @@
 # Ubuntuの公式コンテナを軸に環境構築
-FROM ubuntu
+FROM ubuntu:20.04
 
 # インタラクティブモードにならないようにする
 ARG DEBIAN_FRONTEND=noninteractive
@@ -8,14 +8,15 @@ ENV TZ=Asia/Tokyo
 
 # インフラを整備
 RUN apt-get update && \
-    apt-get install -y zsh time tzdata tree git curl
-
-# デフォルトシェルをZ shellにする
-RUN chsh -s /bin/zsh
+    apt-get install -y --no-install-recommends \
+            tzdata git curl
 
 # C++, Python3, PyPy3の3つの環境想定
 RUN apt-get update && \
-    apt-get install -y gcc-9 g++-9 python3.8 python3-pip pypy3 nodejs npm
+    apt-get install -y --no-install-recommends \
+            gcc-9 g++-9 \
+            python3.8 python3-pip pypy3 \
+            nodejs npm
 
 # 一般的なコマンドで使えるように設定
 # e.g. python3.8 main.py => python main.py
