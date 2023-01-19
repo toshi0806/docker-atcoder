@@ -15,6 +15,7 @@ RUN apt-get update && \
             npm \
             python3.8 \
             python3-pip \
+            time \
             tzdata \
             && \
     apt-get clean && \
