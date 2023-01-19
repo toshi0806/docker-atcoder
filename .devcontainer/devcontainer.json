@@ -21,6 +21,7 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"sanaajani.taskrunnercode", // Run tasks from Explorer pane
+		"vscjava.vscode-java-pack", // Extension Pack for Java (Microsoft)
 		"ms-python.python", // Python IntelliSense (Microsoft)
 		"ms-python.vscode-pylance", // Python language server (Microsoft)
 		"ms-vscode.cpptools", // C/C++ IntelliSense (Microsoft)
