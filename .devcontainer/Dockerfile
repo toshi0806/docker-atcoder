@@ -9,14 +9,28 @@ ENV TZ=Asia/Tokyo
 # インフラを整備
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-            tzdata git curl
+            curl \
+            git \
+            nodejs \
+            npm \
+            python3.8 \
+            python3-pip \
+            tzdata \
+            && \
+    apt-get clean && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# コンテスト補助アプリケーションをインストール
+RUN pip3 install online-judge-tools==11.5.1
+RUN npm install -g atcoder-cli@2.2.0
+COPY login-atcoder.sh /tmp
 
 # C++, Python3, PyPy3の3つの環境想定
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
             gcc-9 g++-9 \
-            python3.8 python3-pip pypy3 \
-            nodejs npm
+            pypy3
 
 # 一般的なコマンドで使えるように設定
 # e.g. python3.8 main.py => python main.py
@@ -34,26 +48,17 @@ RUN pip install numpy==1.18.2 && \
     pip install numba==0.48.0 && \
     pip install networkx==2.4
 
-# C++でAtCoder Library(ACL)を使えるようにする
-RUN git clone https://github.com/atcoder/ac-library.git /lib/ac-library
-ENV CPLUS_INCLUDE_PATH /lib/ac-library
+## C++でAtCoder Library(ACL)を使えるようにする
+#RUN git clone https://github.com/atcoder/ac-library.git /lib/ac-library
+#ENV CPLUS_INCLUDE_PATH /lib/ac-library
 
 # Pythonでの競技プログラミング用データ構造をインストール
 RUN pip install git+https://github.com/hinamimi/ac-library-python && \
     pip install git+https://github.com/hinamimi/python-sortedcontainers
 
-# コンテスト補助アプリケーションをインストール
-RUN pip install online-judge-tools==11.3.0
-RUN npm install -g atcoder-cli@2.1.1
-
-# atcoder-cliの設定
-RUN acc config-dir && \
-    acc config default-template python && \
-    acc config default-test-dirname-format test
-
-# # AHC用のRustのinstall
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-ENV PATH $PATH:/home/root/.cargo/bin
+## # AHC用のRustのinstall
+#RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+#ENV PATH $PATH:/home/root/.cargo/bin
 
 WORKDIR /root/problems
 WORKDIR /root/library

@@ -6,17 +6,18 @@ services:
       dockerfile: Dockerfile
 
     # イメージ名を指定
-    image: toshi0806/docker-atcoder:latest
+    image: ghcr.io/toshi0806/docker-atcoder:latest
 
     # localとcontainer間のファイルを同期させる
     # ${local}:${container}
     volumes:
       - ../problems:/root/problems:cached
       - ../library:/root/library:cached
-      - ../acc-template-python:/root/.config/atcoder-cli-nodejs/python:cached
+      - ../atcoder-cli-nodejs:/root/.config/atcoder-cli-nodejs:cached
+      - ../.local:/root/.local:cached
       - ../.vscode:/root/.vscode:cached
 
-    # オプション これらのconfigファイルが必要なければコメントアウト
+#    # オプション これらのconfigファイルが必要なければコメントアウト
 #      - ../dotfiles/.zshrc:/root/.zshrc
 #      - ../dotfiles/.zinit:/root/.zinit
 #      - ../dotfiles/.zsh_history:/root/.zsh_history
