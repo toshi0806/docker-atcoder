@@ -27,6 +27,9 @@
             "label": "AtCoder: SUBMIT code",
             "type": "shell",
             "command": "cd ${fileDirname}; am s ${fileExtname}",
+            "presentation": {
+                "focus": true,
+            },
             "problemMatcher": []
         },
         {
