@@ -1,4 +1,4 @@
-problems/**
-library/**
+contest/**
+lib/**
 atcoder-cli-nodejs/session.json
 .local/share/online-judge-tools/cookie.jar

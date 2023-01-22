@@ -1,1 +1,1 @@
-/root/library/make/makefile
+/root/lib/make/makefile

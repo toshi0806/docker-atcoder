@@ -11,8 +11,8 @@ services:
     # localとcontainer間のファイルを同期させる
     # ${local}:${container}
     volumes:
-      - ../problems:/root/problems:cached
-      - ../library:/root/library:cached
+      - ../contest:/root/contest:cached
+      - ../lib:/root/lib:cached
       - ../bin:/root/bin:cached
       - ../atcoder-cli-nodejs:/root/.config/atcoder-cli-nodejs:cached
       - ../.local:/root/.local:cached

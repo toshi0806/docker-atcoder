@@ -42,10 +42,11 @@ RUN npm install -g atcoder-cli@2.2.0
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
 #            gcc-9 g++-9 \
-#            pypy3 \
 # 本当は openjdk-11 だが、公式パッケージが配布されないようなので 8 で回避
             openjdk-8-jdk-headless \
 #            openjdk-11-jdk-headless \
+#            pypy3 \
+#            ruby \
             && \
     apt-get clean && \
     apt-get autoremove -y && \
@@ -80,6 +81,6 @@ RUN \
 #RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 #ENV PATH $PATH:/home/root/.cargo/bin
 
-ENV CONTESTS_DIR $HOME/problems
+ENV CONTEST_DIR $HOME/contest
 WORKDIR $CONTEST_DIR
-WORKDIR $HOME/library
+WORKDIR $HOME/lib

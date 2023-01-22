@@ -3,7 +3,7 @@ echo 'update .bashrc'
 cat >>${HOME}/.bashrc <<'EOF'
 
 am() {
-    cd ${CONTESTS_DIR:-/root/problems}
+    cd ${CONTEST_DIR:-${HOME}/contest}
     command am "$@"
 }
 EOF
