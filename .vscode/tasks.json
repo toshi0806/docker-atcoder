@@ -33,6 +33,12 @@
             "problemMatcher": []
         },
         {
+            "label": "AtCoder: setup NEW contest",
+            "type": "shell",
+            "command": "cd ${env:CONTEST_DIR}; am new ${input:contest_id}",
+            "problemMatcher": []
+        },
+        {
             "label": "Test - online-judge-tools: Python",
             "type": "shell",
             "command": "oj",
@@ -182,6 +188,13 @@
                 "--tle",
                 "4"
             ]
+        }
+    ],
+    "inputs":[
+        {
+            "id": "contest_id",
+            "description": "参加するコンテスト名",
+            "type": "promptString"
         }
     ]
 }
