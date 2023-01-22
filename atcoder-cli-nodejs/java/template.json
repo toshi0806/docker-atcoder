@@ -1,6 +1,6 @@
 {
   "task": {
-    "program": ["Main.java"],
+    "program": ["Main.java", "makefile"],
     "submit": "Main.java"
   }
 }

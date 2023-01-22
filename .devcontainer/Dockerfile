@@ -1,17 +1,24 @@
 # Ubuntuの公式コンテナを軸に環境構築
 FROM ubuntu:20.04
 
+# コンテナ構築用にホームディレクトリ代入
+ARG HOME=/root
+
 # インタラクティブモードにならないようにする
 ARG DEBIAN_FRONTEND=noninteractive
-# タイムゾーンを日本に設定
-ENV TZ=Asia/Tokyo
+
+# タイムゾーンとPATHを設定
+ENV TZ=Asia/Tokyo \
+    PATH=$HOME/bin:$PATH
 
 # インフラを整備
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
             curl \
             git \
+            jq \
             locales \
+            make \
             nodejs \
             npm \
             python3.8 \
@@ -19,10 +26,10 @@ RUN apt-get update && \
             time \
             tzdata \
             && \
+    localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
-RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
 ENV LANG="ja_JP.UTF-8" \
     LANGUAGE="ja_JP:ja" \
     LC_ALL="ja_JP.UTF-8"
@@ -30,14 +37,15 @@ ENV LANG="ja_JP.UTF-8" \
 # コンテスト補助アプリケーションをインストール
 RUN pip3 install online-judge-tools==11.5.1
 RUN npm install -g atcoder-cli@2.2.0
-COPY login-atcoder.sh /tmp
 
 # AtCoder 参加用プログラミング言語をインストール
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
 #            gcc-9 g++-9 \
 #            pypy3 \
-            openjdk-11-jdk \
+# 本当は openjdk-11 だが、公式パッケージが配布されないようなので 8 で回避
+            openjdk-8-jdk-headless \
+#            openjdk-11-jdk-headless \
             && \
     apt-get clean && \
     apt-get autoremove -y && \
@@ -72,5 +80,6 @@ RUN \
 #RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 #ENV PATH $PATH:/home/root/.cargo/bin
 
-WORKDIR /root/problems
-WORKDIR /root/library
+ENV CONTESTS_DIR $HOME/problems
+WORKDIR $CONTEST_DIR
+WORKDIR $HOME/library

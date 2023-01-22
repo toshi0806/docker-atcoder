@@ -1,0 +1,37 @@
+#! /bin/sh
+# AtCoder frontend utility for (formaly) Make
+
+CMD="$1"
+
+case ${CMD} in
+new|setup)
+  acc new $2 --no-tests
+  ;;
+*)
+  EXT="$2"
+
+  case ${EXT} in
+  \.java)
+    PROG=java
+    ;;
+  \.py)
+    PROG=python
+    ;;
+  \.c++)
+    PROG=c++
+    ;;
+  \.rb)
+    PROG=ruby
+    ;;
+  \.ex)
+    PROG=elixir
+    ;;
+  *)
+    PROG=UNKNOWN
+    ;;
+  esac
+
+  export PROG
+  make ${CMD}
+  ;;
+esac

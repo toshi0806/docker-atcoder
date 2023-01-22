@@ -13,6 +13,7 @@ services:
     volumes:
       - ../problems:/root/problems:cached
       - ../library:/root/library:cached
+      - ../bin:/root/bin:cached
       - ../atcoder-cli-nodejs:/root/.config/atcoder-cli-nodejs:cached
       - ../.local:/root/.local:cached
       - ../.vscode:/root/.vscode:cached
