@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
             "name": "Python: AtCoder Test1",
             "type": "python",
             "request": "launch",
@@ -60,6 +73,6 @@
             "cwd": "${fileDirname}",
             "console": "integratedTerminal",
             "args": []
-        },
+        }
     ]
 }
