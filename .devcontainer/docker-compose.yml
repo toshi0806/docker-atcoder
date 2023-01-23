@@ -13,6 +13,7 @@ services:
     volumes:
       - ../contest:/root/contest:cached
       - ../lib:/root/lib:cached
+      - ../.support:/root/lib/.support:cached
       - ../bin:/root/bin:cached
       - ../atcoder-cli-nodejs:/root/.config/atcoder-cli-nodejs:cached
       - ../.local:/root/.local:cached

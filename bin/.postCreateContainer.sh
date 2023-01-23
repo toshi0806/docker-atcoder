@@ -11,8 +11,8 @@ EOF
 echo 'create symlinks for makefile'
 cd ${HOME}/.config/atcoder-cli-nodejs
 progs=$(find . ! -name . -type d -print | sed -e 's,\./,,')
-for i in $progs; do
-  (cd $i; ln -s ${CONTEST_DIR}/.support/makefile)
+for i in ${progs}; do
+  (cd ${i}; ln -sf ${HOME}/lib/.support/makefile)
 done
 
 echo 'login for acc'
